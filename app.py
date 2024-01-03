@@ -17,7 +17,7 @@ def exibir_opções():
     print('4. Sair\n')
 
 def finalizar_app():
-    os.system('cls')              #comando que limpa no Terminal
+    os.system('cls')              #comando que limpa o Terminal
     print('APP Finalizado\n')
 
 def opcao_invalida():
@@ -26,18 +26,21 @@ def opcao_invalida():
     main()
 
 def escolher_opção():
-    opcao_escolhida = int(input('Escolha uma opção: ')) 
-    #opcao_escolhida = int(opcao_escolhida)
+    try:
+        opcao_escolhida = int(input('Escolha uma opção: ')) 
+        #opcao_escolhida = int(opcao_escolhida)
 
-    if opcao_escolhida == 1:
-        print('Cadastrar Restaurantes')
-    elif opcao_escolhida == 2:
-        print('Listar Restaurantes')
-    elif opcao_escolhida == 3:
-        print('Ativar Restaurante')
-    elif opcao_escolhida == 4:
-        finalizar_app()
-    else:
+        if opcao_escolhida == 1:
+            print('Cadastrar Restaurantes')
+        elif opcao_escolhida == 2:
+            print('Listar Restaurantes')
+        elif opcao_escolhida == 3:
+            print('Ativar Restaurante')
+        elif opcao_escolhida == 4:
+            finalizar_app()
+        else:                    #Se colocarem um número errado no input.
+            opcao_invalida()
+    except:                      #Se não colocarem um número no input.
         opcao_invalida()
 
 def main():
