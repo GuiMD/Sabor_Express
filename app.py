@@ -1,6 +1,9 @@
 import os
 
-restaurantes = ['Pizza', 'Sushi', 'Lasanha']   #Lista de restaurantes que serão cadastrados.
+restaurantes = [{'nome':'Sushi', 'categoria':'Japonesa', 'ativo':False}, 
+                {'nome':'Pizzaria', 'categoria':'Italiana', 'ativo':True},
+                {'nome':'Feijoada', 'categoria':'Brasileira', 'ativo':False}]   
+#Dicionário com restaurantes cadastrados.
 
 def exibir_nome_do_programa():
     print("""
@@ -22,10 +25,14 @@ def finalizar_app():
     os.system('cls')              #comando que limpa o Terminal
     print('APP Finalizado\n')
 
+def voltar_ao_menu_principal():
+    input('\nDigite uma tecla para voltar ao Menu Principal ')
+    main()
+
 def opcao_invalida():
     print('Opção Inválida.\n')
-    input('Digite uma tecla para voltar ao menu principal ')
-    main()
+
+    voltar_ao_menu_principal()
 
 def cadastrar_novo_restaurante():
     os.system('cls')
@@ -33,16 +40,19 @@ def cadastrar_novo_restaurante():
     nome_do_restaurante = input('Digite o nome do novo restaurante: ')
     restaurantes.append(nome_do_restaurante)
     print(f"O restaurante {nome_do_restaurante} foi cadastrado com sucesso!\n")
-    input('\nDigite uma tecla para voltar ao Menu Principal ')
-    main()
+
+    voltar_ao_menu_principal()
 
 def listar_restaurantes():
     os.system('cls')
     print('Listando os Restaurantes\n')
-    for restaurante in restaurantes:          #pra cada restaurante na lista, mostre o nome dele.
-        print(f'.{restaurante}')
-    input('\nDigite uma tecla para voltar ao Menu Principal ')
-    main()
+    for restaurante in restaurantes:          
+        nome_restaurante = restaurante['nome']
+        categoria = restaurante['categoria']
+        ativo = restaurante['ativo']
+        print(f'- {nome_restaurante} | {categoria} | {ativo}')
+    
+    voltar_ao_menu_principal()
 
 def escolher_opção():
     try:
