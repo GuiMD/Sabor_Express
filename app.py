@@ -55,6 +55,23 @@ def listar_restaurantes():
     
     voltar_ao_menu_principal()
 
+def alterar_estado_restaurante():
+    os.system('cls')
+    print('Ativando ou Desativando um Restaurante\n')
+    nome_restaurante = input('Digite o nome do restaurante que deseja alterar ')
+    restaurante_encontrado = False
+
+    for restaurante in restaurantes:
+        if nome_restaurante == restaurante['nome']:
+            restaurante_encontrado = True
+            restaurante['ativo'] = not restaurante['ativo']   #not irá inverter o estado que está.
+            mensagem = f'O restaurante {nome_restaurante} foi ativado com sucesso' if restaurante['ativo']  else f'O restaurante {nome_restaurante} foi desativado com sucesso'
+            print(mensagem)
+    if not restaurante_encontrado:
+        print('Este restaurante não foi encontrado')
+
+    voltar_ao_menu_principal()
+
 def escolher_opção():
     try:
         opcao_escolhida = int(input('Escolha uma opção: ')) 
@@ -65,7 +82,7 @@ def escolher_opção():
         elif opcao_escolhida == 2:
             listar_restaurantes()
         elif opcao_escolhida == 3:
-            print('Ativar Restaurante')
+            alterar_estado_restaurante()
         elif opcao_escolhida == 4:
             finalizar_app()
         else:                    #Se colocarem um número errado no input.
