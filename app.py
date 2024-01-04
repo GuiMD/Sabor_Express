@@ -47,11 +47,12 @@ def cadastrar_novo_restaurante():
 def listar_restaurantes():
     os.system('cls')
     print('Listando os Restaurantes\n')
+    print(f'* {'Nome do Restaurante'.ljust(20)} * {'Categoria'.ljust(20)} * {'Status'}')
     for restaurante in restaurantes:          
         nome_restaurante = restaurante['nome']
         categoria = restaurante['categoria']
-        ativo = restaurante['ativo']
-        print(f'- {nome_restaurante} | {categoria} | {ativo}')
+        ativo = 'ativado' if restaurante['ativo'] else 'desativado'
+        print(f'| {nome_restaurante.ljust(20)} | {categoria.ljust(20)} | {ativo}')
     
     voltar_ao_menu_principal()
 
@@ -62,13 +63,16 @@ def alterar_estado_restaurante():
     restaurante_encontrado = False
 
     for restaurante in restaurantes:
-        if nome_restaurante == restaurante['nome']:
+        if nome_restaurante == restaurante['nome']:   #ver se existe no dicionário elemento igual.
             restaurante_encontrado = True
             restaurante['ativo'] = not restaurante['ativo']   #not irá inverter o estado que está.
-            mensagem = f'O restaurante {nome_restaurante} foi ativado com sucesso' if restaurante['ativo']  else f'O restaurante {nome_restaurante} foi desativado com sucesso'
+            if restaurante['ativo']:  #True
+                mensagem = f'O restaurante {nome_restaurante} foi ativado com sucesso'  
+            else:  #False
+                mensagem = f'O restaurante {nome_restaurante} foi desativado com sucesso'
             print(mensagem)
     if not restaurante_encontrado:
-        print('Este restaurante não foi encontrado')
+        print('Este nome de restaurante não foi encontrado')
 
     voltar_ao_menu_principal()
 
