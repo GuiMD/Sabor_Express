@@ -2,8 +2,7 @@ import os
 
 restaurantes = [{'nome':'Sushi', 'categoria':'Japonesa', 'ativo':False}, 
                 {'nome':'Pizzaria', 'categoria':'Italiana', 'ativo':True},
-                {'nome':'Feijoada', 'categoria':'Brasileira', 'ativo':False}]   
-#Dicionário com restaurantes cadastrados.
+                {'nome':'Feijoada', 'categoria':'Brasileira', 'ativo':False}]
 
 def exibir_nome_do_programa():
     print("""
@@ -38,7 +37,9 @@ def cadastrar_novo_restaurante():
     os.system('cls')
     print('cadastro de novos restaurantes\n')
     nome_do_restaurante = input('Digite o nome do novo restaurante: ')
-    restaurantes.append(nome_do_restaurante)
+    categoria = input(f'Digite o nome da categoria do restaurante {nome_do_restaurante}: ')
+    dados_do_restaurante = {'nome':nome_do_restaurante, 'categoria':categoria, 'ativo':False}
+    restaurantes.append(dados_do_restaurante)
     print(f"O restaurante {nome_do_restaurante} foi cadastrado com sucesso!\n")
 
     voltar_ao_menu_principal()
